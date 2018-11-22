@@ -70,6 +70,7 @@ if (!$query) {
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    
 <![endif]-->
 </head>
 
@@ -299,7 +300,8 @@ if (!$query) {
                                           <div class="col-lg-4">
                         <div class="card">
                             <div class="card-body analytics-info">
-                                <div class="col-lg-2 col-md-6 m-b-30"><span class="pie" data-peity='{ "fill": ["#009efb", "#f2f2f2"]}'>3/5</span>
+                                <div class="col-lg-2 col-md-6 m-b-30">
+                                 <div id="piechart_3d" style="width: 900px; height: 500px;"></div>
                                     </div>
                                 <div id="sparkline11" class="text-center"></div>
                             </div>
