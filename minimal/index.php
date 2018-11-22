@@ -65,12 +65,39 @@ if (!$query) {
     <link href="css/pages/dashboard4.css" rel="stylesheet">
     <!-- You can change the theme colors from here -->
     <link href="css/colors/default.css" id="theme" rel="stylesheet">
+
+    <style>
+    .wrap {
+  width: 20rem;
+  height: 260px;
+}
+
+.pie {
+  padding: 50%;
+  border-radius: 50%;
+  background: conic-gradient(#ab3e5b calc(var(--p)*1%), #ef746f 0%);
+  transition: --p .5s;
+}
+.pie:after {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-size: 2em;
+  counter-reset: p var(--p);
+  content: counter(p) "%";
+}
+
+#o2016:checked ~ .pie { --p: 20 }
+#o2017:checked ~ .pie { --p: 26 }
+#o2018:checked ~ .pie { --p: 29 }
+
+    
+    </style>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    
 <![endif]-->
 </head>
 
@@ -285,7 +312,7 @@ if (!$query) {
                                 <div class="d-flex no-block">
                                     <div>
                                         <h3 class="card-title m-b-5">
-                                            
+                                        <span class="lstick"></span>Petrol vs Diesel
                                         </h3>
                                     </div>
                                     <div class="ml-auto">
@@ -300,9 +327,16 @@ if (!$query) {
                                           <div class="col-lg-4">
                         <div class="card">
                             <div class="card-body analytics-info">
-                                <div class="col-lg-2 col-md-6 m-b-30">
-                                 <div id="piechart_3d" style="width: 900px; height: 500px;"></div>
-                                    </div>
+                            <div class="col-lg-2 col-md-6 m-b-30">
+                            <div class="wrap">
+                            <input id="o2016" name="o" type="radio" checked="checked"/>
+    <label for="o2016">2016</label>
+    <input id="o2017" name="o" type="radio"/>
+    <label for="o2017">2017</label>
+    <input id="o2018" name="o" type="radio"/>
+    <label for="o2018">2018</label>
+                            <div class="pie" aria-label="Value as pie chart. 20% for year 2016, 26% for year 2017, 29% for year 2018." role="graphics-document group"></div>
+                                    </div></div>
                                 <div id="sparkline11" class="text-center"></div>
                             </div>
                     </div>
@@ -471,6 +505,13 @@ if (!$query) {
     <!-- Style switcher -->
     <!-- ============================================================== -->
     <script src="../assets/plugins/styleswitcher/jQuery.style.switcher.js"></script>
+    <script>
+    CSS.registerProperty({
+	name: '--p',
+	syntax: '<integer>',
+	initialValue: 0,
+	inherits: true });
+    </script>
 </body>
 
 
