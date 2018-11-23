@@ -1,5 +1,6 @@
 
-<?php 
+<?php
+    require('../init.php');
   session_start(); 
 
   if (!isset($_SESSION['username'])) {
@@ -11,27 +12,12 @@
   	unset($_SESSION['username']);
   	header("location: login.php");
   }
-?>
-<?php
-
-$db_host = 'localhost'; // Server Name
-$db_user = 'root'; // Username
-$db_pass = ''; // Password
-$db_name = 'management'; // Database Name
-
-$conn = mysqli_connect($db_host, $db_user, $db_pass, $db_name);
-if (!$conn) {
-	die ('Failed to connect to MySQL: ' . mysqli_connect_error());	
-}
 
 $sql = 'SELECT * 
 		FROM orders';
 		
-$query = mysqli_query($conn, $sql);
+$query = mysqli_query($db, $sql);
 
-if (!$query) {
-	die ('SQL Error: ' . mysqli_error($conn));
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">

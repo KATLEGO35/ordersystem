@@ -1,4 +1,5 @@
-<?php 
+<?php
+    require('../init.php');
   session_start(); 
 
   if (!isset($_SESSION['username'])) {
@@ -10,28 +11,10 @@
   	unset($_SESSION['username']);
   	header("location: login.php");
   }
-?>
-
-<?php
-
-$db_host = 'localhost'; // Server Name
-$db_user = 'root'; // Username
-$db_pass = ''; // Password
-$db_name = 'management'; // Database Name
-
-$conn = mysqli_connect($db_host, $db_user, $db_pass, $db_name);
-if (!$conn) {
-	die ('Failed to connect to MySQL: ' . mysqli_connect_error());	
-}
 
 $sql = 'SELECT * 
 		FROM clients';
-		
-$query = mysqli_query($conn, $sql);
 
-if (!$query) {
-	die ('SQL Error: ' . mysqli_error($conn));
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -115,12 +98,12 @@ if (!$query) {
                         <!-- Profile -->
                         <!-- ============================================================== -->
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle waves-effect waves-dark" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../assets/images/users/1.jpg" alt="user" class="profile-pic" /></a>
+                            <a class="nav-link dropdown-toggle waves-effect waves-dark" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../../assets/images/users/1.jpg" alt="user" class="profile-pic" /></a>
                             <div class="dropdown-menu dropdown-menu-right animated flipInY">
                                 <ul class="dropdown-user">
                                     <li>
                                         <div class="dw-user-box">
-                                            <div class="u-img"><img src="../assets/images/users/1.jpg" alt="user"></div>
+                                            <div class="u-img"><img src="../../assets/images/users/1.jpg" alt="user"></div>
                                             
                                             <?php  if (isset($_SESSION['username'])) : ?>
                                             <div class="u-text">
@@ -344,7 +327,7 @@ if (!$query) {
                             <ul class="m-t-20 chatonline">
                                 <li><b>Chat option</b></li>
                                 <li>
-                                    <a href="javascript:void(0)"><img src="../assets/images/users/1.jpg" alt="user-img" class="img-circle"> <span>Varun Dhavan <small class="text-success">online</small></span></a>
+                                    <a href="javascript:void(0)"><img src="../../assets/images/users/1.jpg" alt="user-img" class="img-circle"> <span>Varun Dhavan <small class="text-success">online</small></span></a>
                                 </li>
                                 <li>
                                     <a href="javascript:void(0)"><img src="../assets/images/users/2.jpg" alt="user-img" class="img-circle"> <span>Genelia Deshmukh <small class="text-warning">Away</small></span></a>

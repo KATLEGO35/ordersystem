@@ -1,4 +1,35 @@
-<?php include('order.php') ?>
+<?php
+    $errors = array();
+    if (isset($_POST['order'])) {
+        require('../init.php');
+        // receive all input values from the form
+        $nasite = mysqli_real_escape_string($db, $_POST['nasite']);
+        $address = mysqli_real_escape_string($db, $_POST['address']);
+
+
+
+        // form validation: ensure that the form is correctly filled ...
+        // by adding (array_push()) corresponding error unto $errors array
+
+
+        // first check the database to make sure
+        // a user does not already exist with the same username and/or email
+
+
+        // Finally, register user if there are no errors in the form
+        if (empty($errors)) {// if user exists
+            $orderId = uniqid();
+
+            $sql = "INSERT INTO orders (order_id, id, nasite, address)
+                  VALUES ('$orderId', 1, '$nasite','$address')";
+
+            mysqli_query($db, $sql);
+            header('location: success.php');
+        }
+
+    }
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -163,7 +194,15 @@
                     <div class="col-lg-6 col-md-6">
                     <div class="card card-body">
                             <form class="form-horizontal m-t-40" action="form-basic.php" method="post">
-                            <?php include('../errors.php'); ?>
+                                <?php  if (count($errors) > 0) : ?>
+                                <div class="error">
+                                    <?php foreach ($errors as $error) : ?>
+                                        <p><?php echo $error ?></p>
+                                    <?php endforeach ?>
+                                </div>
+                                <?php  endif ?>
+
+
                                <div class="form-group">
                                <label for="">
                                Site name

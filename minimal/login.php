@@ -1,4 +1,36 @@
-<?php include('server.php') ?>
+<?php session_start();
+
+    require('init.php');
+
+    $errors = array();
+
+    if (isset($_POST['login_user'])) {
+        $username = mysqli_real_escape_string($db, $_POST['username']);
+        $password = mysqli_real_escape_string($db, $_POST['password']);
+
+        if (empty($username)) {
+            array_push($errors, "Username is required");
+        }
+        if (empty($password)) {
+            array_push($errors, "Password is required");
+        }
+
+        if (count($errors) == 0) {
+            $password = md5($password);
+            $query = "SELECT * FROM clients WHERE username='$username' AND password='$password'";
+            $results = mysqli_query($db, $query);
+            if (mysqli_num_rows($results) == 1) {
+                $_SESSION['username'] = $username;
+                $_SESSION['success'] = "You are now logged in";
+                header('location: index.php');
+            } else {
+                array_push($errors, "Wrong username/password combination");
+            }
+        }
+
+    }
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,7 +49,9 @@
     
     <section id='LoginContent'>
 	<form method="post" action="login.php">
-  	<?php include('errors.php'); ?>
+        <div class="error">
+            <?php if(!empty($errors)){ foreach($errors as $error) { echo $error . "<br>"; } } ?>
+        </div>
             <div class='login'>
                 <div class='SaavHeader'>
                     <h3>Order Management System</h3>
@@ -30,7 +64,7 @@
                         <div class='icon'>
                             <img src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/user_icon_copy.png'>
                         </div>
-                        <input placeholder='Usuário' name="username" type='text' id='UsuarioInput'>
+                        <input placeholder='Username' name="username" type='text' id='UsuarioInput'>
                         <div class='validation'>
                             <img src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/tick.png'>
                         </div>
@@ -39,7 +73,7 @@
                     <div class='icon'>
                         <img src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/lock_icon_copy.png'>
                     </div>
-                    <input placeholder='Senha'name="password" id='SenhaInput' type='password'>
+                    <input placeholder='Password'name="password" id='SenhaInput' type='password'>
                     <div class='validation'>
                         <img src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/tick.png'>
                     </div>
@@ -63,6 +97,7 @@
     <img src="https://cdn.worldvectorlogo.com/logos/dribbble-icon-1.svg"> On Dribbble
 </a> -->
 <script>
+
 </script>
 </body>
 </html>

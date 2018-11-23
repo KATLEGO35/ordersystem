@@ -1,4 +1,25 @@
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
 <?php 
+//   session_start(); 
+
+//   if (!isset($_SESSION['username'])) {
+//   	$_SESSION['msg'] = "You must log in first";
+//       header('location: login.php');
+//   }
+//   if (isset($_GET['logout'])) {
+//   	session_destroy();
+//   	unset($_SESSION['username']);
+//   	header("location: login.php");
+//   }
+?>
+=======
+=======
+>>>>>>> Stashed changes
+<?php
+
+    require('init.php');
+
   session_start(); 
 
   if (!isset($_SESSION['username'])) {
@@ -10,28 +31,27 @@
   	unset($_SESSION['username']);
   	header("location: login.php");
   }
-?>
+//<<<<<<< Updated upstream
+//>>>>>>> Stashed changes
+//=======
+//>>>>>>> Stashed changes
+//
 
-<?php
+$query = mysqli_query($db, 'SELECT * FROM clients');
 
-$db_host = 'localhost'; // Server Name
-$db_user = 'root'; // Username
-$db_pass = ''; // Password
-$db_name = 'management'; // Database Name
+  // Get number of orders
+  $user = $_SESSION['username'];
 
-$conn = mysqli_connect($db_host, $db_user, $db_pass, $db_name);
-if (!$conn) {
-	die ('Failed to connect to MySQL: ' . mysqli_connect_error());	
-}
+ $sql1 = "SELECT id FROM clients WHERE username = '$user'";
+// var_dump($sql1);
+// exit();
+ $query = mysqli_query($db, $sql1);
+    $result = mysqli_fetch_assoc($query);
+    $id = intval($result['id']);
 
-$sql = 'SELECT * 
-		FROM clients';
-		
-$query = mysqli_query($conn, $sql);
-
-if (!$query) {
-	die ('SQL Error: ' . mysqli_error($conn));
-}
+    $sql2 =  "SELECT COUNT(*) from orders WHERE id = $id ";
+    $result2 = mysqli_query($db, $sql2);
+    $orderNum = mysqli_fetch_assoc($result2);
 ?>
 
 
@@ -65,6 +85,34 @@ if (!$query) {
     <link href="css/pages/dashboard4.css" rel="stylesheet">
     <!-- You can change the theme colors from here -->
     <link href="css/colors/default.css" id="theme" rel="stylesheet">
+
+    <style>
+    .wrap {
+  width: 20rem;
+  height: 260px;
+}
+
+.pie {
+  padding: 50%;
+  border-radius: 50%;
+  background: conic-gradient(#ab3e5b calc(var(--p)*1%), #ef746f 0%);
+  transition: --p .5s;
+}
+.pie:after {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-size: 2em;
+  counter-reset: p var(--p);
+  content: counter(p) "%";
+}
+
+#o2016:checked ~ .pie { --p: 20 }
+#o2017:checked ~ .pie { --p: 26 }
+#o2018:checked ~ .pie { --p: 29 }
+
+    
+    </style>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -232,7 +280,7 @@ if (!$query) {
                         <div class="card">
                             <div class="card-body">
                                 <div class="d-flex">
-                                    <div class="m-r-20 align-self-center"><img src="../assets/images/icon/assets.png" alt="Income" />Number of orders</div>
+                                    <div class="m-r-20 align-self-center"><img src="../assets/images/icon/assets.png" alt="Income" />Number of orders</div><span><?php echo $orderNum["COUNT(*)"]; ?></span>
                                     <div class="align-self-center">
                                         <h6 class="text-muted m-t-10 m-b-0"></h6>
                                         </div>
@@ -262,7 +310,7 @@ if (!$query) {
                             <div class="card-body">
                                 <div class="d-flex no-block">
                                     <div>
-                                        <h3 class="card-title m-b-5"><span class="lstick"></span>Number of orders </h3>
+                                        <h3 class="card-title m-b-5"><span class="lstick"></span>Number of orders</h3>
                                     </div>
                                     <div class="ml-auto">
                                         <select class="custom-select b-0">
@@ -284,7 +332,7 @@ if (!$query) {
                                 <div class="d-flex no-block">
                                     <div>
                                         <h3 class="card-title m-b-5">
-                                            
+                                        <span class="lstick"></span>Petrol vs Diesel
                                         </h3>
                                     </div>
                                     <div class="ml-auto">
@@ -299,8 +347,16 @@ if (!$query) {
                                           <div class="col-lg-4">
                         <div class="card">
                             <div class="card-body analytics-info">
-                                <div class="col-lg-2 col-md-6 m-b-30"><span class="pie" data-peity='{ "fill": ["#009efb", "#f2f2f2"]}'>3/5</span>
-                                    </div>
+                            <div class="col-lg-2 col-md-6 m-b-30">
+                            <div class="wrap">
+                            <input id="o2016" name="o" type="radio" checked="checked"/>
+    <label for="o2016">2016</label>
+    <input id="o2017" name="o" type="radio"/>
+    <label for="o2017">2017</label>
+    <input id="o2018" name="o" type="radio"/>
+    <label for="o2018">2018</label>
+                            <div class="pie" aria-label="Value as pie chart. 20% for year 2016, 26% for year 2017, 29% for year 2018." role="graphics-document group"></div>
+                                    </div></div>
                                 <div id="sparkline11" class="text-center"></div>
                             </div>
                     </div>
@@ -469,6 +525,13 @@ if (!$query) {
     <!-- Style switcher -->
     <!-- ============================================================== -->
     <script src="../assets/plugins/styleswitcher/jQuery.style.switcher.js"></script>
+    <script>
+    CSS.registerProperty({
+	name: '--p',
+	syntax: '<integer>',
+	initialValue: 0,
+	inherits: true });
+    </script>
 </body>
 
 
