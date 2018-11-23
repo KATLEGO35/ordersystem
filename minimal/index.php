@@ -1,21 +1,3 @@
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<?php 
-//   session_start(); 
-
-//   if (!isset($_SESSION['username'])) {
-//   	$_SESSION['msg'] = "You must log in first";
-//       header('location: login.php');
-//   }
-//   if (isset($_GET['logout'])) {
-//   	session_destroy();
-//   	unset($_SESSION['username']);
-//   	header("location: login.php");
-//   }
-?>
-=======
-=======
->>>>>>> Stashed changes
 <?php
 
     require('init.php');
@@ -31,11 +13,6 @@
   	unset($_SESSION['username']);
   	header("location: login.php");
   }
-//<<<<<<< Updated upstream
-//>>>>>>> Stashed changes
-//=======
-//>>>>>>> Stashed changes
-//
 
 $query = mysqli_query($db, 'SELECT * FROM clients');
 
@@ -202,16 +179,17 @@ $query = mysqli_query($db, 'SELECT * FROM clients');
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
-                                             <li class="nav-devider"></li>
-                                             <li> <a class="has-arrow waves-effect waves-dark" href="index.php" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard </span></a>
-                                            </li>
+                        <li class="nav-devider"></li>
+                        <li> <a class="has-arrow waves-effect waves-dark" href="index.php" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard </span></a>
+                        </li>
                         </li>
                         <li> <a class="has-arrow waves-effect waves-dark" href="customers.php" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">Customers</span></a>
-                         
+                        </li>
+                        <li> <a class="has-arrow waves-effect waves-dark" href="orders.php" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">Orders</span></a>
                         </li>
 
-                                      <li> <a class="has-arrow waves-effect waves-dark" href="form-layout.php" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">Add customer</span></a>
-                          
+                        <li> <a class="has-arrow waves-effect waves-dark" href="form-layout.php" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">Add customer</span></a>
+
                         </li>
 
                     </ul>

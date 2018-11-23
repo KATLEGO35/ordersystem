@@ -33,8 +33,8 @@
 ?>
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Login - SAAV</title>
+<head>  <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon.png">
+    <title>Login - Order management system</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
     <meta author="">
@@ -97,7 +97,6 @@
     <img src="https://cdn.worldvectorlogo.com/logos/dribbble-icon-1.svg"> On Dribbble
 </a> -->
 <script>
-
 </script>
 </body>
 </html>

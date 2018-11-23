@@ -1,6 +1,6 @@
 
 <?php
-    require('../init.php');
+    require('init.php');
   session_start(); 
 
   if (!isset($_SESSION['username'])) {
@@ -138,16 +138,17 @@ $query = mysqli_query($db, $sql);
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
-                                             <li class="nav-devider"></li>
-                                             <li> <a class="has-arrow waves-effect waves-dark" href="index.php" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard </span></a>
-                                            </li>
+                        <li class="nav-devider"></li>
+                        <li> <a class="has-arrow waves-effect waves-dark" href="index.php" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard </span></a>
+                        </li>
                         </li>
                         <li> <a class="has-arrow waves-effect waves-dark" href="customers.php" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">Customers</span></a>
-                         
+                        </li>
+                        <li> <a class="has-arrow waves-effect waves-dark" href="orders.php" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">Orders</span></a>
                         </li>
 
-                                      <li> <a class="has-arrow waves-effect waves-dark" href="form-layout.php" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">Add customer</span></a>
-                          
+                        <li> <a class="has-arrow waves-effect waves-dark" href="form-layout.php" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">Add customer</span></a>
+
                         </li>
 
                     </ul>
@@ -194,12 +195,15 @@ $query = mysqli_query($db, $sql);
                                     <table class="table">
                                         <thead>
                                             <tr>
+                                                <th>Uid</th>
+                                                <th>Site name</th>
                                                 <th>Site</th>
                                                 <th>Petrol</th>
-                                                <th>Diesel</th>
-                                                <th>order</th>
                                                 <th>Petrol litres</th>
+                                                <th>Diesel</th>
                                                 <th>Diesel litres</th>
+                                                <th>order</th>
+                                                <th>address</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -212,15 +216,17 @@ $query = mysqli_query($db, $sql);
                                           	
   
                                             <tr>
-                                                <td><a href="javascript:void(0)">'.$row['site'].' </a></td>
+                                                <td><a href="javascript:void(0)">'.$row['id'].' </a></td>
+                                                <td>'.$row['nasite'].'</td>
+                                                <td>'.$row['site'].'</td>
                                                 <td>'.$row['petrol'].'</td>
-                                                <td><span class="text-muted"><i class="far fa-clock"></i> '.$row['diesel'].'</span> </td>
-                                                
+                                                <td>'.$row['litresp'].'</td>
+                                                <td>'.$row['diesel'].'</td>
+                                                <td>'.$row['litresd'].'</td>
                                                 <td>
-                                                    <div class="label label-table label-success">'.$row['order'].'</div>
+                                                    <div class="label label-table label-success">'.$row['order_id'].'</div>
                                                 </td>
-                                                <td>'.$row['plitre'].'</td>
-                                                <td>'.$row['dlitre'].'</td>
+                                                <td>'.$row['address'].'</td>
                                             </tr> '
                                             ;
                                             $no++;

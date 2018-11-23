@@ -1,9 +1,14 @@
-<?php
+ <?php
     $errors = array();
     if (isset($_POST['order'])) {
         require('../init.php');
         // receive all input values from the form
         $nasite = mysqli_real_escape_string($db, $_POST['nasite']);
+        $site = mysqli_real_escape_string($db, $_POST['site']);
+        $petrol = mysqli_real_escape_string($db, $_POST['petrol']);
+        $petrol_litres = mysqli_real_escape_string($db, $_POST['litresp']);
+        $diesel = mysqli_real_escape_string($db, $_POST['diesel']);
+        $diesel_litres = mysqli_real_escape_string($db, $_POST['litresd']);
         $address = mysqli_real_escape_string($db, $_POST['address']);
 
 
@@ -20,8 +25,8 @@
         if (empty($errors)) {// if user exists
             $orderId = uniqid();
 
-            $sql = "INSERT INTO orders (order_id, id, nasite, address)
-                  VALUES ('$orderId', 1, '$nasite','$address')";
+            $sql = "INSERT INTO orders (order_id, id, nasite,site, petrol, litresp, diesel, litresd, address)
+                  VALUES ('$orderId', 1, '$nasite', '$site', '$petrol', '$petrol_litres', '$diesel', '$diesel_litres' ,'$address')";
 
             mysqli_query($db, $sql);
             header('location: success.php');
@@ -212,10 +217,46 @@
                  
                                <div class="form-group">
                                <label for="">
+                               Site
+                               </label>
+                               <textarea name="site" class="col-md-12 custom-select" id="" cols="30" rows="10"></textarea>
+                               </div>
+                               
+                               <div class="form-group">
+                               <label for="">
+                               Petrol
+                               </label>
+                               <textarea name="petrol" class="col-md-12 custom-select" id="" cols="30" rows="10"></textarea>
+                               </div>
+                               
+                               <div class="form-group">
+                               <label for="">
+                               Petrol litres
+                               </label>
+                               <textarea name="litresp" class="col-md-12 custom-select" id="" cols="30" rows="10"></textarea>
+                               </div>
+                               
+                               <div class="form-group">
+                               <label for="">
+                               Diesel
+                               </label>
+                               <textarea name="diesel" class="col-md-12 custom-select" id="" cols="30" rows="10"></textarea>
+                               </div>
+                               
+                               <div class="form-group">
+                               <label for="">
+                               Diesel litres
+                               </label>
+                               <textarea name="litresd" class="col-md-12 custom-select" id="" cols="30" rows="10"></textarea>
+                               </div>
+                               
+                               <div class="form-group">
+                               <label for="">
                                Address
                                </label>
                                <textarea name="address" class="col-md-12 custom-select" id="" cols="30" rows="10"></textarea>
                                </div>
+                             
                                
                                 <div class="form-actions">
                                     <div class="row">

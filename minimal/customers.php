@@ -1,6 +1,3 @@
-<<<<<<< Updated upstream
-<?php require('connect.php'); ?>
-=======
 <?php
 require('init.php');
 
@@ -13,7 +10,7 @@ if (!$query) {
 	die ('SQL Error: ' . mysqli_error($conn));
 }
 ?>
->>>>>>> Stashed changes
+
 <?php 
   session_start(); 
 
@@ -152,7 +149,7 @@ if (!$query) {
                         </li>
                         <li> <a class="has-arrow waves-effect waves-dark" href="customers.php" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">Customers</span></a>
                         </li>
-                        <li> <a class="has-arrow waves-effect waves-dark" href="customers.php" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">Orders</span></a>
+                        <li> <a class="has-arrow waves-effect waves-dark" href="orders.php" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">Orders</span></a>
                         </li>
 
                                       <li> <a class="has-arrow waves-effect waves-dark" href="form-layout.php" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">Add customer</span></a>
@@ -224,7 +221,7 @@ if (!$query) {
                                                 <td><a href="javascript:void(0)">'.$row['company'].' </a></td>
                                                 <td>'.$row['contact'].'</td>
                                                 <td><span class="text-muted"><i class="far fa-clock"></i> '.$row['username'].'</span> </td>
-                                                <td>'.$row['nosite'].'</td>
+                                                
                                                 <td>
                                                     <div class="label label-table label-success">'.$row['registration'].'</div>
                                                 </td>

@@ -4,6 +4,11 @@
 
 // initializing variables
 $nasite = "";
+$site = "";
+$petrol = "";
+$petrol_litres = "";
+$diesel = "";
+$diesel_litres = "";
 $address = "";
 $errors = array();
 
