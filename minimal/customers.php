@@ -203,9 +203,8 @@ if (!$query) {
                                                 <th>Company name</th>
                                                 <th>Contact person</th>
                                                 <th>Email</th>
-                                                <th># of sites</th>
                                                 <th>Registation number</th>
-                                                <th>edit</th>
+                                                <th></th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -225,7 +224,7 @@ if (!$query) {
                                                 <td>
                                                     <div class="label label-table label-success">'.$row['registration'].'</div>
                                                 </td>
-                                                <td></td>
+                                                <td>edit</td>
                                             </tr> '
                                             ;
                                             $no++;
