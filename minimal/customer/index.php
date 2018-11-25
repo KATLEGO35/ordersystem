@@ -1,21 +1,30 @@
 <?php
-    require('../init.php');
-  session_start(); 
 
-  if (!isset($_SESSION['username'])) {
-  	$_SESSION['msg'] = "You must log in first";
-      header('location: login.php');
-  }
-  
-  if (isset($_GET['logout'])) {
-  	session_destroy();
-  	unset($_SESSION['username']);
-  	header("location: login.php");
-  }
+require('../init.php');
 
-$sql = 'SELECT * 
-		FROM clients';
+session_start();
 
+if (!isset($_SESSION['username'])) {
+    $_SESSION['msg'] = "You must log in first";
+    header('location: login.php');
+}
+if (isset($_GET['logout'])) {
+    session_destroy();
+    unset($_SESSION['username']);
+    header("location: login.php");
+}
+
+$query = mysqli_query($db, 'SELECT * FROM clients');
+
+// Get number of orders
+$user = $_SESSION['username'];
+
+$sql1 = "SELECT id FROM clients WHERE username = '$user'";
+// var_dump($sql1);
+// exit();
+$query = mysqli_query($db, $sql1);
+$result = mysqli_fetch_assoc($query);
+$id = intval($result['id']);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -91,10 +100,10 @@ $sql = 'SELECT *
                         <!-- ============================================================== -->
                         <!-- Search -->
                         <!-- ============================================================== -->
-                        <li class="nav-item hidden-xs-down search-box"> <a class="nav-link hidden-sm-down waves-effect waves-dark" href="javascript:void(0)"><i class="ti-search"></i></a>
-                            <form class="app-search">
-                                <input type="text" class="form-control" placeholder="Search & enter"> <a class="srh-btn"><i class="ti-close"></i></a> </form>
-                            </li>
+<!--                        <li class="nav-item hidden-xs-down search-box"> <a class="nav-link hidden-sm-down waves-effect waves-dark" href="javascript:void(0)"><i class="ti-search"></i></a>-->
+<!--                            <form class="app-search">-->
+<!--                                <input type="text" class="form-control" placeholder="Search & enter"> <a class="srh-btn"><i class="ti-close"></i></a> </form>-->
+<!--                        </li>-->
                         <!-- ============================================================== -->
                         <!-- Profile -->
                         <!-- ============================================================== -->
@@ -103,19 +112,19 @@ $sql = 'SELECT *
                             <div class="dropdown-menu dropdown-menu-right animated flipInY">
                                 <ul class="dropdown-user">
                                     <li>
-                                        <div class="dw-user-box">
+                                        <div class="dw-user-box text-center">
                                             <div class="u-img"><img src="../../assets/images/users/1.jpg" alt="user"></div>
-                                            
+
                                             <?php  if (isset($_SESSION['username'])) : ?>
                                             <div class="u-text">
 
-<h4><?php echo $_SESSION['username']; ?></h4>
-</div>
-</div>
-       
-                                           
+                                                <h4><?php echo $_SESSION['username']; ?></h4>
+                                            </div>
+                                        </div>
+
+
                                     </li>
-                                    <li><a href="index.php?logout='1'"><i class="fa fa-power-off"></i> Logout</a></li>
+                                    <li><a href="index.php?logout='1'" class="btn btn-rounded btn-sm"><i class="fa fa-power-off"></i> Logout</a></li>
                                     <?php endif ?>
                                 </ul>
                             </div>
@@ -140,11 +149,11 @@ $sql = 'SELECT *
                                              <li> <a class="has-arrow waves-effect waves-dark" href="index.php" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard </span></a>
                                             </li>
                         </li>
-                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">My profile</span></a>
+                        <li> <a class="has-arrow waves-effect waves-dark" href="profile.php" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">My profile</span></a>
                          
                         </li>
 
-                                      <li> <a class="has-arrow waves-effect waves-dark" href="form-basic.php" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">Order</span></a>
+                                      <li> <a class="has-arrow waves-effect waves-dark" href="customer_order.php" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">Order</span></a>
                           
                         </li>
 

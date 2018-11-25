@@ -154,7 +154,7 @@
                         <li> <a class="has-arrow waves-effect waves-dark" href="orders.php" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">Orders</span></a>
                         </li>
 
-                        <li> <a class="has-arrow waves-effect waves-dark" href="form-layout.php" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">Add customer</span></a>
+                        <li> <a class="has-arrow waves-effect waves-dark" href="add.php" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">Add customer</span></a>
 
                         </li>
 
@@ -198,7 +198,7 @@
                                 <h4 class="m-b-0 text-white">Client registration</h4>
                             </div>
                             <div class="card-body">
-                                <form method="post" action="form-layout.php" class="form-horizontal">
+                                <form method="post" action="add.php" class="form-horizontal">
                                 <?php if (count($errors) > 0) : ?>
                                     <div class="error">
                                         <?php foreach ($errors as $error) : ?>

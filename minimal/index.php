@@ -25,10 +25,6 @@ $query = mysqli_query($db, 'SELECT * FROM clients');
  $query = mysqli_query($db, $sql1);
     $result = mysqli_fetch_assoc($query);
     $id = intval($result['id']);
-
-    $sql2 =  "SELECT COUNT(*) from orders WHERE id = $id ";
-    $result2 = mysqli_query($db, $sql2);
-    $orderNum = mysqli_fetch_assoc($result2);
 ?>
 
 
@@ -134,10 +130,10 @@ $query = mysqli_query($db, 'SELECT * FROM clients');
                         <!-- ============================================================== -->
                         <!-- Search -->
                         <!-- ============================================================== -->
-                        <li class="nav-item hidden-xs-down search-box"> <a class="nav-link hidden-sm-down waves-effect waves-dark" href="javascript:void(0)"><i class="ti-search"></i></a>
-                            <form class="app-search">
-                                <input type="text" class="form-control" placeholder="Search & enter"> <a class="srh-btn"><i class="ti-close"></i></a> </form>
-                            </li>
+<!--                        <li class="nav-item hidden-xs-down search-box"> <a class="nav-link hidden-sm-down waves-effect waves-dark" href="javascript:void(0)"><i class="ti-search"></i></a>-->
+<!--                            <form class="app-search">-->
+<!--                                <input type="text" class="form-control" placeholder="Search & enter"> <a class="srh-btn"><i class="ti-close"></i></a> </form>-->
+<!--                            </li>-->
                         <!-- ============================================================== -->
                         <!-- Profile -->
                         <!-- ============================================================== -->
@@ -146,19 +142,19 @@ $query = mysqli_query($db, 'SELECT * FROM clients');
                             <div class="dropdown-menu dropdown-menu-right animated flipInY">
                                 <ul class="dropdown-user">
                                     <li>
-                                        <div class="dw-user-box">
+                                        <div class="dw-user-box text-center">
                                             <div class="u-img"><img src="../assets/images/users/1.jpg" alt="user"></div>
-                                            
+
                                             <?php  if (isset($_SESSION['username'])) : ?>
                                             <div class="u-text">
 
 <h4><?php echo $_SESSION['username']; ?></h4>
 </div>
 </div>
-       
-                                           
+
+
                                     </li>
-                                    <li><a href="index.php?logout='1'"><i class="fa fa-power-off"></i> Logout</a></li>
+                                    <li><a href="index.php?logout='1'" class="btn btn-rounded btn-sm"><i class="fa fa-power-off"></i> Logout</a></li>
                                     <?php endif ?>
                                 </ul>
                             </div>
@@ -188,7 +184,7 @@ $query = mysqli_query($db, 'SELECT * FROM clients');
                         <li> <a class="has-arrow waves-effect waves-dark" href="orders.php" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">Orders</span></a>
                         </li>
 
-                        <li> <a class="has-arrow waves-effect waves-dark" href="form-layout.php" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">Add customer</span></a>
+                        <li> <a class="has-arrow waves-effect waves-dark" href="add.php" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">Add customer</span></a>
 
                         </li>
 

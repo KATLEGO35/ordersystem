@@ -1,4 +1,5 @@
  <?php
+
     $errors = array();
     if (isset($_POST['order'])) {
         require('../init.php');
@@ -110,29 +111,29 @@
                         <!-- ============================================================== -->
                         <!-- Search -->
                         <!-- ============================================================== -->
-                        <li class="nav-item hidden-xs-down search-box"> <a class="nav-link hidden-sm-down waves-effect waves-dark" href="javascript:void(0)"><i class="ti-search"></i></a>
-                            <form class="app-search">
-                                <input type="text" class="form-control" placeholder="Search & enter"> <a class="srh-btn"><i class="ti-close"></i></a> </form>
-                            </li>
+<!--                        <li class="nav-item hidden-xs-down search-box"> <a class="nav-link hidden-sm-down waves-effect waves-dark" href="javascript:void(0)"><i class="ti-search"></i></a>-->
+<!--                            <form class="app-search">-->
+<!--                                <input type="text" class="form-control" placeholder="Search & enter"> <a class="srh-btn"><i class="ti-close"></i></a> </form>-->
+<!--                            </li>-->
                         <!-- ============================================================== -->
                         <!-- Profile -->
                         <!-- ============================================================== -->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle waves-effect waves-dark" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../../assets/images/users/1.jpg" alt="user" class="profile-pic" /></a>
-                            <div class="dropdown-menu dropdown-menu-right animated flipInY">
-                                <ul class="dropdown-user">
-                                    <li>
-                                        <div class="dw-user-box">
-                                            <div class="u-img"><img src="../../assets/images/users/1.jpg" alt="user"></div>
-                                            <div class="u-text">
-                                                <h4>John Doe</h4>
-                                                <p class="text-muted">johndoe@gmail.com</p><a href="pages-profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a></div>
-                                        </div>
-                                    </li>
-                                    <li><a href="#"><i class="fa fa-power-off"></i> Logout</a></li>
-                                </ul>
-                            </div>
-                        </li>
+<!--                        <li class="nav-item dropdown">-->
+<!--                            <a class="nav-link dropdown-toggle waves-effect waves-dark" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../../assets/images/users/1.jpg" alt="user" class="profile-pic" /></a>-->
+<!--                            <div class="dropdown-menu dropdown-menu-right animated flipInY">-->
+<!--                                <ul class="dropdown-user">-->
+<!--                                    <li>-->
+<!--                                        <div class="dw-user-box">-->
+<!--                                            <div class="u-img"><img src="../../assets/images/users/1.jpg" alt="user"></div>-->
+<!--                                            <div class="u-text">-->
+<!--                                                <h4>John Doe</h4>-->
+<!--                                                <p class="text-muted">johndoe@gmail.com</p><a href="pages-profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a></div>-->
+<!--                                        </div>-->
+<!--                                    </li>-->
+<!--                                    <li><a href="#"><i class="fa fa-power-off"></i> Logout</a></li>-->
+<!--                                </ul>-->
+<!--                            </div>-->
+<!--                        </li>-->
                     </ul>
                 </div>
             </nav>
@@ -153,11 +154,11 @@
                                              <li> <a class="has-arrow waves-effect waves-dark" href="index.php" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard </span></a>
                                             </li>
                         </li>
-                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">My profile</span></a>
+                        <li> <a class="has-arrow waves-effect waves-dark" href="profile.php" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">My profile</span></a>
                          
                         </li>
 
-                                      <li> <a class="has-arrow waves-effect waves-dark" href="form-basic.php" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">Order</span></a>
+                                      <li> <a class="has-arrow waves-effect waves-dark" href="customer_order.php" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">Order</span></a>
                           
                         </li>
 
@@ -198,7 +199,7 @@
                  <div class="row">
                     <div class="col-lg-6 col-md-6">
                     <div class="card card-body">
-                            <form class="form-horizontal m-t-40" action="form-basic.php" method="post">
+                            <form class="form-horizontal m-t-40" action="customer_order.php" method="post">
                                 <?php  if (count($errors) > 0) : ?>
                                 <div class="error">
                                     <?php foreach ($errors as $error) : ?>
@@ -226,7 +227,10 @@
                                <label for="">
                                Petrol
                                </label>
-                               <textarea name="petrol" class="col-md-12 custom-select" id="" cols="30" rows="10"></textarea>
+                                   <select name="petrol" class="col-md-12 custom-select">
+                                       <option value="petrol 95">Petrol 95</option>
+                                       <option value="petrol 93">Petrol 93</option>
+                                   </select>
                                </div>
                                
                                <div class="form-group">
@@ -240,7 +244,10 @@
                                <label for="">
                                Diesel
                                </label>
-                               <textarea name="diesel" class="col-md-12 custom-select" id="" cols="30" rows="10"></textarea>
+                                   <select name="diesel" class="col-md-12 custom-select">
+                                       <option value="diesel 500">Diesel 500</option>
+                                       <option value="">Diesel 50</option>
+                                   </select>
                                </div>
                                
                                <div class="form-group">

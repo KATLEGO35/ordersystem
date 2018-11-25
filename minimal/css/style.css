@@ -1066,8 +1066,9 @@ File: scss
     .topbar .top-navbar .navbar-nav > .nav-item.show {
       background: rgba(0, 0, 0, 0.05); }
   .topbar .profile-pic {
-    width: 30px;
-    border-radius: 100%; }
+    width: 40px;
+    height: 40px;
+    border-radius: 25px; }
   .topbar .dropdown-menu {
     box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
     -webkit-box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
@@ -1960,7 +1961,7 @@ Buttons
   transition: all .5s; }
 
 .btn-rounded {
-  border-radius: 60px;
+  border-radius: 30px;
   padding: 7px 18px; }
   .btn-rounded.btn-lg {
     padding: .75rem 1.5rem; }

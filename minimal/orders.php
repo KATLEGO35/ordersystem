@@ -96,7 +96,7 @@ $query = mysqli_query($db, $sql);
                         <li class="nav-item hidden-xs-down search-box"> <a class="nav-link hidden-sm-down waves-effect waves-dark" href="javascript:void(0)"><i class="ti-search"></i></a>
                             <form class="app-search">
                                 <input type="text" class="form-control" placeholder="Search & enter"> <a class="srh-btn"><i class="ti-close"></i></a> </form>
-                            </li>
+                        </li>
                         <!-- ============================================================== -->
                         <!-- Profile -->
                         <!-- ============================================================== -->
@@ -105,19 +105,19 @@ $query = mysqli_query($db, $sql);
                             <div class="dropdown-menu dropdown-menu-right animated flipInY">
                                 <ul class="dropdown-user">
                                     <li>
-                                        <div class="dw-user-box">
+                                        <div class="dw-user-box text-center">
                                             <div class="u-img"><img src="../assets/images/users/1.jpg" alt="user"></div>
-                                            
+
                                             <?php  if (isset($_SESSION['username'])) : ?>
                                             <div class="u-text">
 
-<h4><?php echo $_SESSION['username']; ?></h4>
-</div>
-</div>
-       
-                                           
+                                                <h4><?php echo $_SESSION['username']; ?></h4>
+                                            </div>
+                                        </div>
+
+
                                     </li>
-                                    <li><a href="index.php?logout='1'"><i class="fa fa-power-off"></i> Logout</a></li>
+                                    <li><a href="index.php?logout='1'" class="btn btn-rounded btn-sm"><i class="fa fa-power-off"></i> Logout</a></li>
                                     <?php endif ?>
                                 </ul>
                             </div>
@@ -147,7 +147,7 @@ $query = mysqli_query($db, $sql);
                         <li> <a class="has-arrow waves-effect waves-dark" href="orders.php" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">Orders</span></a>
                         </li>
 
-                        <li> <a class="has-arrow waves-effect waves-dark" href="form-layout.php" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">Add customer</span></a>
+                        <li> <a class="has-arrow waves-effect waves-dark" href="add.php" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">Add customer</span></a>
 
                         </li>
 
@@ -204,6 +204,7 @@ $query = mysqli_query($db, $sql);
                                                 <th>Diesel litres</th>
                                                 <th>order</th>
                                                 <th>address</th>
+                                                <th></th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -227,6 +228,7 @@ $query = mysqli_query($db, $sql);
                                                     <div class="label label-table label-success">'.$row['order_id'].'</div>
                                                 </td>
                                                 <td>'.$row['address'].'</td>
+                                                 <td><span onclick="" id="<?php echo $row[\'id\']; ?>" class="fa fa-trash delbutton"></span></td>
                                             </tr> '
                                             ;
                                             $no++;
@@ -343,8 +345,27 @@ $query = mysqli_query($db, $sql);
     <!-- Style switcher -->
     <!-- ============================================================== -->
     <script src="../assets/plugins/styleswitcher/jQuery.style.switcher.js"></script>
-    <script>
-    
+    <script type="text/javascript" >
+        $(function() {
+
+            $(".delbutton").click(function() {
+                var del_id = $(this).attr("id");
+                var info = 'id=' + del_id;
+                if (confirm("Sure you want to delete this post? This cannot be undone later.")) {
+                    $.ajax({
+                        type : "POST",
+                        url : "delete_entry.php", //URL to the delete php script
+                        data : info,
+                        success : function() {
+                        }
+                    });
+                    $(this).parents(".record").animate("fast").animate({
+                        opacity : "hide"
+                    }, "slow");
+                }
+                return false;
+            });
+        });
     </script>
 </body>
 
