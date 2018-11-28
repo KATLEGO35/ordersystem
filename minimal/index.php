@@ -25,6 +25,9 @@ $query = mysqli_query($db, 'SELECT * FROM clients');
  $query = mysqli_query($db, $sql1);
     $result = mysqli_fetch_assoc($query);
     $id = intval($result['id']);
+    $sql2 =  "SELECT COUNT(*) from orders WHERE id = $id";
+   $result2 = mysqli_query($db, $sql2);
+   $orderNum = mysqli_fetch_assoc($result2);
 ?>
 
 

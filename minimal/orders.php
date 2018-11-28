@@ -95,7 +95,7 @@ $query = mysqli_query($db, $sql);
                         <!-- ============================================================== -->
                         <li class="nav-item hidden-xs-down search-box"> <a class="nav-link hidden-sm-down waves-effect waves-dark" href="javascript:void(0)"><i class="ti-search"></i></a>
                             <form class="app-search">
-                                <input type="text" class="form-control" placeholder="Search & enter"> <a class="srh-btn"><i class="ti-close"></i></a> </form>
+                                <input type="text" id="myInput" onkeyup="myFunction()" class="form-control" placeholder="Search & enter"> <a class="srh-btn"><i class="ti-close"></i></a> </form>
                         </li>
                         <!-- ============================================================== -->
                         <!-- Profile -->
@@ -192,7 +192,7 @@ $query = mysqli_query($db, $sql);
                                 <h4 class="card-title">Customers Table </h4>
                                
                                 <div class="table-responsive">
-                                    <table class="table">
+                                    <table class="table" id="myTable">
                                         <thead>
                                             <tr>
                                                 <th>Uid</th>
@@ -345,6 +345,7 @@ $query = mysqli_query($db, $sql);
     <!-- Style switcher -->
     <!-- ============================================================== -->
     <script src="../assets/plugins/styleswitcher/jQuery.style.switcher.js"></script>
+    <script src="js/filter.js"></script>
     <script type="text/javascript" >
         $(function() {
 

@@ -1,4 +1,5 @@
 <?php
+
 require('init.php');
 
 $sql = 'SELECT * 
@@ -11,7 +12,8 @@ if (!$query) {
 }
 ?>
 
-<?php 
+<?php
+
   session_start(); 
 
   if (!isset($_SESSION['username'])) {
@@ -23,6 +25,7 @@ if (!$query) {
   	unset($_SESSION['username']);
   	header("location: login.php");
   }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -100,7 +103,7 @@ if (!$query) {
                         <!-- ============================================================== -->
                         <li class="nav-item hidden-xs-down search-box"> <a class="nav-link hidden-sm-down waves-effect waves-dark" href="javascript:void(0)"><i class="ti-search"></i></a>
                             <form class="app-search">
-                                <input type="text" class="form-control" placeholder="Search & enter"> <a class="srh-btn"><i class="ti-close"></i></a> </form>
+                                <input type="text" id="myInput" onkeyup="myFunction()" class="form-control" placeholder="Search & enter"> <a class="srh-btn"><i class="ti-close"></i></a> </form>
                         </li>
                         <!-- ============================================================== -->
                         <!-- Profile -->
@@ -197,9 +200,9 @@ if (!$query) {
                                 <h4 class="card-title">Customers Table </h4>
                                
                                 <div class="table-responsive">
-                                    <table class="table">
+                                    <table class="table" id="myTable">
                                         <thead>
-                                            <tr>
+                                                <th>id</th>
                                                 <th>Company name</th>
                                                 <th>Contact person</th>
                                                 <th>Email</th>
@@ -218,6 +221,7 @@ if (!$query) {
                                           	
   
                                             <tr>
+                                            <td>'.$row['id'].'</td>
                                                 <td><a href="javascript:void(0)">'.$row['company'].' </a></td>
                                                 <td>'.$row['contact'].'</td>
                                                 <td><span class="text-muted"><i class="far fa-clock"></i> '.$row['username'].'</span> </td>
@@ -225,7 +229,7 @@ if (!$query) {
                                                 <td>
                                                     <div class="label label-table label-success">'.$row['registration'].'</div>
                                                 </td>
-                                                <td>edit</td>
+                                                <td><span class="fa fa-edit"></span></td>
                                                 <td><span onclick="" id="<?php echo $row[\'id\']; ?>" class="fa fa-trash delbutton"></span></td>
                                             </tr> '
                                             ;
@@ -343,28 +347,8 @@ if (!$query) {
     <!-- Style switcher -->
     <!-- ============================================================== -->
     <script src="../assets/plugins/styleswitcher/jQuery.style.switcher.js"></script>
-    <script type="text/javascript" >
-        $(function() {
+<script src="js/filter.js"></script>
 
-            $(".delbutton").click(function() {
-                var del_id = $(this).attr("id");
-                var info = 'id=' + del_id;
-                if (confirm("Sure you want to delete this post? This cannot be undone later.")) {
-                    $.ajax({
-                        type : "POST",
-                        url : "delete_entry.php", //URL to the delete php script
-                        data : info,
-                        success : function() {
-                        }
-                    });
-                    $(this).parents(".record").animate("fast").animate({
-                        opacity : "hide"
-                    }, "slow");
-                }
-                return false;
-            });
-        });
-    </script>
 </body>
 
 
