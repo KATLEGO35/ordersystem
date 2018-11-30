@@ -1,33 +1,8 @@
 <?php
 
     require('init.php');
+    include('db_functions.php');
 
-  session_start(); 
-
-  if (!isset($_SESSION['username'])) {
-  	$_SESSION['msg'] = "You must log in first";
-      header('location: login.php');
-  }
-  if (isset($_GET['logout'])) {
-  	session_destroy();
-  	unset($_SESSION['username']);
-  	header("location: login.php");
-  }
-
-$query = mysqli_query($db, 'SELECT * FROM clients');
-
-  // Get number of orders
-  $user = $_SESSION['username'];
-
- $sql1 = "SELECT id FROM clients WHERE username = '$user'";
-// var_dump($sql1);
-// exit();
- $query = mysqli_query($db, $sql1);
-    $result = mysqli_fetch_assoc($query);
-    $id = intval($result['id']);
-    $sql2 =  "SELECT COUNT(*) from orders WHERE id = $id";
-   $result2 = mysqli_query($db, $sql2);
-   $orderNum = mysqli_fetch_assoc($result2);
 ?>
 
 

@@ -3,35 +3,7 @@
     $errors = array();
     if (isset($_POST['order'])) {
         require('../init.php');
-        // receive all input values from the form
-        $nasite = mysqli_real_escape_string($db, $_POST['nasite']);
-        $site = mysqli_real_escape_string($db, $_POST['site']);
-        $petrol = mysqli_real_escape_string($db, $_POST['petrol']);
-        $petrol_litres = mysqli_real_escape_string($db, $_POST['litresp']);
-        $diesel = mysqli_real_escape_string($db, $_POST['diesel']);
-        $diesel_litres = mysqli_real_escape_string($db, $_POST['litresd']);
-        $address = mysqli_real_escape_string($db, $_POST['address']);
 
-
-
-        // form validation: ensure that the form is correctly filled ...
-        // by adding (array_push()) corresponding error unto $errors array
-
-
-        // first check the database to make sure
-        // a user does not already exist with the same username and/or email
-
-
-        // Finally, register user if there are no errors in the form
-        if (empty($errors)) {// if user exists
-            $orderId = uniqid();
-
-            $sql = "INSERT INTO orders (order_id, id, nasite,site, petrol, litresp, diesel, litresd, address)
-                  VALUES ('$orderId', 1, '$nasite', '$site', '$petrol', '$petrol_litres', '$diesel', '$diesel_litres' ,'$address')";
-
-            mysqli_query($db, $sql);
-            header('location: success.php');
-        }
 
     }
 
