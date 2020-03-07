@@ -13,8 +13,51 @@
   	header("location: login.php");
   }
 
-$sql = 'SELECT * 
-		FROM orders';
+
+
+
+// I think it is essential you run this query in your DB first
+
+# ALTER TABLE management.orders ADD username VARCHAR(50) NOT NULL;
+
+
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 
+
+$username = $_SESSION['username'];
+
+
+
+// select the username of this user from clients table
+$query = mysqli_query($conn, "SELECT username FROM clients WHERE username = '$username' ");
+
+if ($query === false) {
+    die(mysqli_error($conn));// good at handling errors
+}
+
+
+while ($row = mysqli_fetch_array($query)) {
+// ASIGN username to variable
+    $username = $row['username'];
+}
+
+/* 
+
+     ASSUMING YOU HAVE ALREADY ADDED THE USERNAME COLUMN IN YOUR ORDERS TABLE
+     SPECIFY IN YOUR SELECT STATEMENT TO ONLY SELECT ROWS WITH THE USERNAME SAME AS THAT FROM CLIENTS TABLE
+
+ */
+$sql = "SELECT * FROM orders WHERE username = '$username' ";
+
+
+
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+
+
+
+
+
 		
 $query = mysqli_query($db, $sql);
 
